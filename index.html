@@ -10,15 +10,43 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
-        body {
-            background: url(images/bg-image.jpg) no-repeat;
-            background-size: cover;
-            height: 100vh;
-        }
-        section{
+        section {
             height: 100vh;
             display: flex;
+            justify-content: center;
             align-items: center;
+            background-color: rgb(53, 53, 53);
+        }
+
+        section::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(216, 56, 56);
+            clip-path: circle(50% at 100% -20%);
+        }
+
+        section::before {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(56, 125, 216);
+            clip-path: circle(40% at 0 100%);
+        }
+        .weatherDetails{
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.404);
+            border-radius: 10px;
+            padding: 0 0 20px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
         }
     </style>
 </head>
@@ -26,20 +54,22 @@
 <body>
     <section>
         <div class="container">
-            <form class="col-md-6 m-auto py-5">
-                <div class="input-group mb-3">
-                    <input id="cityName" type="text" class="form-control"
-                        placeholder="Enter a location for Weather ...">
-                    <div class="input-group-append">
-                        <button id="search" type="button" class="btn btn-danger">Search</button>
+            <div class="weatherDetails">
+                <form id="form" class="col-md-6 m-auto py-5">
+                    <div class="input-group mb-3">
+                        <input id="cityName" type="text" class="form-control"
+                            placeholder="Enter a location for Weather ...">
+                        <div class="input-group-append">
+                            <button id="search" type="button" class="btn btn-danger">Search</button>
+                        </div>
                     </div>
+                </form>
+                <div class="weather-status text-white text-center">
+                    <img id="icons" alt="Weather Icon">
+                    <h1 id="weatherOfCity" class="text-dark">Dhaka</h1>
+                    <h3 class="text-dark"><span id="temperature"></span>&deg;C</h3>
+                    <h1 id="weatherCondition" class="lead text-dark">Clouds</h1>
                 </div>
-            </form>
-            <div class="weather-status text-white text-center">
-                <img id="icons" alt="Weather Icon">
-                <h1 id="weatherOfCity">Dhaka</h1>
-                <h3><span id="temperature"></span>&deg;C</h3>
-                <h1 id="weatherCondition" class="lead">Clouds</h1>
             </div>
         </div>
     </section>
