@@ -8,17 +8,23 @@ const temperature = document.getElementById("temperature");
 const weatherCondition = document.getElementById("weatherCondition");
 
 document.getElementById("form").addEventListener("keypress", function (e) {
-    e.preventDefault();
-    if (e.key === 'Enter') {
-        cityName = document.getElementById("cityName").value;
-        if (cityName) getLocation(cityName);
+    if (e.key === "Enter") {
+        e.preventDefault();
+        getCityName();
     }
 });
+
 search.addEventListener("click", function (e) {
     e.preventDefault();
+    getCityName();
+});
+
+// getting city name from user and call getLocation function
+function getCityName() {
     cityName = document.getElementById("cityName").value;
     if (cityName) getLocation(cityName);
-});
+    document.getElementById("cityName").value = "";
+}
 
 // getting Location using API
 function getLocation(cityName) {
